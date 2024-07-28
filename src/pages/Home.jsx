@@ -15,6 +15,7 @@ const Home = () => {
       .then((listItems) => {
         setPizzas(listItems);
       });
+    window.scrollTo(0, 0);
   }, []);
 
   return (
