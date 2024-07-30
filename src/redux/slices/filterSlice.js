@@ -5,6 +5,7 @@ const initialState = {
 
   sort: {
     name: "популярности",
+    sortProperty: "rating",
   },
 };
 
