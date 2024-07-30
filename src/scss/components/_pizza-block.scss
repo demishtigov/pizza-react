@@ -1,16 +1,22 @@
-@import "../variables.scss";
+@import "../variables";
 
 .pizza-block {
   width: 280px;
   text-align: center;
   margin-bottom: 65px;
 
-  &:not(:nth-of-type(4n)) {
-    margin-right: 35px;
+  &-wrapper {
+    display: flex;
+    justify-content: center;
   }
 
   &__image {
     width: 260px;
+
+    @media screen and (max-width: 730px) {
+      object-fit: contain;
+      object-position: 6.5px center;
+    }
   }
 
   &__title {
