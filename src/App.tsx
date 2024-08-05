@@ -1,47 +1,28 @@
+import React from "react";
+
+import Header from "./components/Header";
+import Home from "./pages/Home";
+import NotFound from "./pages/NotFound";
+import Cart from "./pages/Cart";
+
+import { Routes, Route } from "react-router-dom";
 import "./scss/app.scss";
 
-import React, { Suspense } from "react";
-import { Routes, Route } from "react-router-dom";
-
-import MainLayout from "./layouts/MainLayout";
-import Home from "./pages/Home";
-
-const Cart = React.lazy(() => import("./pages/Cart"));
-const FullPizza = React.lazy(() => import("./pages/FullPizza"));
-const NotFound = React.lazy(() => import("./pages/NotFound"));
-
-function App() {
+const App = () => {
   return (
-    <Routes>
-      <Route path="/" element={<MainLayout />}>
-        <Route path="" element={<Home />} />
-        <Route
-          path="cart"
-          element={
-            <Suspense fallback={<div>Идёт загрузка корзины...</div>}>
-              <Cart />
-            </Suspense>
-          }
-        />
-        <Route
-          path="pizza/:id"
-          element={
-            <Suspense fallback={<div>Идёт загрузка пиццы...</div>}>
-              <FullPizza />
-            </Suspense>
-          }
-        />
-        <Route
-          path="*"
-          element={
-            <Suspense fallback={<div>Идёт загрузка...</div>}>
-              <NotFound />
-            </Suspense>
-          }
-        />
-      </Route>
-    </Routes>
+    <div className="wrapper">
+      <Header />
+      <div className="content">
+        <div className="container">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/cart" element={<Cart />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </div>
+      </div>
+    </div>
   );
-}
+};
 
 export default App;
