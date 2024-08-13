@@ -1,21 +1,21 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-const Sort = () => {
+const Sort = ({ value, onChangeSort }) => {
   const dispatch = useDispatch();
   const sort = useSelector((state) => state.filter.sort);
   const sortList = ["популярности", "цене", "алфавиту"];
   const [open, setOpen] = useState(false);
-  const [selectedSort, setSelectedSort] = useState(0);
+  // const [selectedSort, setSelectedSort] = useState(0);
 
   const toggleSort = () => {
     return setOpen((prev) => !prev);
   };
 
-  const select = (i) => {
-    setSelectedSort(i);
-    setOpen(false);
-  };
+  // const select = (i) => {
+  //   setSelectedSort(i);
+  //   setOpen(false);
+  // };
 
   return (
     <div className="sort">
@@ -42,8 +42,8 @@ const Sort = () => {
               return (
                 <li
                   key={i}
-                  onClick={() => select(i)}
-                  className={selectedSort === i ? "active" : ""}
+                  onClick={() => onChangeSort()}
+                  className={value === i ? "active" : ""}
                 >
                   {item}
                 </li>
