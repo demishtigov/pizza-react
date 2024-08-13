@@ -9,11 +9,6 @@ const categories = [
   "Закрытые",
 ];
 const Categories = ({ value, onChangeCategory }) => {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const onClickActive = (i) => {
-    setActiveIndex(i);
-  };
-
   return (
     <div className="categories">
       <ul>

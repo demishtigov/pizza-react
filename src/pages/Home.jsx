@@ -13,9 +13,6 @@ const Home = () => {
     dispatch(setCategoryId(id));
   };
 
-  //   const onChangeCategory = React.useCallback((id) => {
-  //     dispatch(setCategoryId(id));
-  //   }, []);
   const [pizzas, setPizzas] = useState([]);
 
   useEffect(() => {
