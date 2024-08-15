@@ -23,7 +23,7 @@ const Home = () => {
   };
 
   const [pizzas, setPizzas] = useState([]);
-  console.log(pizzas);
+  // console.log(pizzas);
 
   const [isLoad, setIsLoad] = useState(true);
 
@@ -47,10 +47,10 @@ const Home = () => {
   }, [categoryId, sort]);
 
   const filteredItems = pizzas.filter((pizza) =>
-    pizza.title.toLowerCase().includes(searchInput.toLowerCase())
+    pizza.title.toLowerCase().includes(searchInput.trim().toLowerCase())
   );
   console.log(filteredItems);
-  
+
   return (
     <>
       <div className="content__top">
@@ -59,7 +59,7 @@ const Home = () => {
       </div>
       <h2 className="content__title">Все пиццы</h2>
       <div className="content__items">
-        {pizzas.map((item) => {
+        {filteredItems.map((item) => {
           return <PizzaBlock key={item.id} {...item} />;
         })}
       </div>
