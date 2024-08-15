@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 
 import axios from "axios";
 
@@ -12,7 +12,7 @@ const Home = () => {
   const dispatch = useDispatch();
   const categoryId = useSelector((state) => state.filter.categoryId);
   const sort = useSelector((state) => state.filter.sort);
-  console.log(categoryId);
+  const searchInput = useSelector((state) => state.filter.searchInput);
 
   const onChangeCategory = (id) => {
     dispatch(setCategoryId(id));
@@ -24,9 +24,11 @@ const Home = () => {
 
   const [pizzas, setPizzas] = useState([]);
 
+
+
   useEffect(() => {
     const categoryQuery = categoryId > 0 ? `category=${categoryId}` : "";
-    const sortQuery = `sortBy=${sort.sortProperty}&order=desc`; // Adjust based on your API
+    const sortQuery = `sortBy=${sort.sortProperty}&order=desc`;
     axios
       .get(
         `https://66a62f9d23b29e17a1a1f5a3.mockapi.io/items?${categoryQuery}&${sortQuery}`
@@ -39,6 +41,8 @@ const Home = () => {
       });
     window.scrollTo(0, 0);
   }, [categoryId, sort]);
+
+
 
   return (
     <>
