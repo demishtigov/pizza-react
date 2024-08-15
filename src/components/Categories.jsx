@@ -8,6 +8,7 @@ const categories = [
   "Острые",
   "Закрытые",
 ];
+
 const Categories = ({ value, onChangeCategory }) => {
   return (
     <div className="categories">

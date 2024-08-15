@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 
+import axios from "axios";
+
 import { useDispatch, useSelector } from "react-redux";
 import { setCategoryId, setChangeSort } from "../redux/slices/filterSlice";
 import Categories from "../components/Categories";
@@ -10,6 +12,7 @@ const Home = () => {
   const dispatch = useDispatch();
   const categoryId = useSelector((state) => state.filter.categoryId);
   const sort = useSelector((state) => state.filter.sort);
+  console.log(categoryId);
 
   const onChangeCategory = (id) => {
     dispatch(setCategoryId(id));
@@ -22,15 +25,20 @@ const Home = () => {
   const [pizzas, setPizzas] = useState([]);
 
   useEffect(() => {
-    fetch("https://66a62f9d23b29e17a1a1f5a3.mockapi.io/items")
-      .then((res) => {
-        return res.json();
+    const categoryQuery = categoryId > 0 ? `category=${categoryId}` : "";
+    const sortQuery = `sortBy=${sort.sortProperty}&order=desc`; // Adjust based on your API
+    axios
+      .get(
+        `https://66a62f9d23b29e17a1a1f5a3.mockapi.io/items?${categoryQuery}&${sortQuery}`
+      )
+      .then((response) => {
+        setPizzas(response.data);
       })
-      .then((listItems) => {
-        setPizzas(listItems);
+      .catch((error) => {
+        console.error("Ошибка при получении данных:", error);
       });
     window.scrollTo(0, 0);
-  }, []);
+  }, [categoryId, sort]);
 
   return (
     <>
