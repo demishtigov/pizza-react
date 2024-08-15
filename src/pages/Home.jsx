@@ -23,27 +23,34 @@ const Home = () => {
   };
 
   const [pizzas, setPizzas] = useState([]);
+  console.log(pizzas);
 
-
+  const [isLoad, setIsLoad] = useState(true);
 
   useEffect(() => {
     const categoryQuery = categoryId > 0 ? `category=${categoryId}` : "";
     const sortQuery = `sortBy=${sort.sortProperty}&order=desc`;
+    setIsLoad(true);
     axios
       .get(
         `https://66a62f9d23b29e17a1a1f5a3.mockapi.io/items?${categoryQuery}&${sortQuery}`
       )
       .then((response) => {
         setPizzas(response.data);
+        setIsLoad(false);
       })
       .catch((error) => {
         console.error("Ошибка при получении данных:", error);
+        setIsLoad(true);
       });
     window.scrollTo(0, 0);
   }, [categoryId, sort]);
 
-
-
+  const filteredItems = pizzas.filter((pizza) =>
+    pizza.title.toLowerCase().includes(searchInput.toLowerCase())
+  );
+  console.log(filteredItems);
+  
   return (
     <>
       <div className="content__top">
