@@ -15,6 +15,8 @@ const PizzaBlock = ({ id, title, imageUrl, types, sizes, price }) => {
       title,
       imageUrl,
       price,
+      type: typesName[activeType],
+      size: sizes[activeSize],
     };
     dispatch(addItem(item));
   };
@@ -26,31 +28,27 @@ const PizzaBlock = ({ id, title, imageUrl, types, sizes, price }) => {
         <h4 className="pizza-block__title">{title}</h4>
         <div className="pizza-block__selector">
           <ul>
-            {types.map((itemId, i) => {
-              return (
-                <li
-                  key={i}
-                  onClick={() => setActiveType(itemId)}
-                  className={activeType === itemId ? "active" : ""}
-                >
-                  {typesName[itemId]}
-                </li>
-              );
-            })}
+            {types.map((itemId, i) => (
+              <li
+                key={i}
+                onClick={() => setActiveType(itemId)}
+                className={activeType === itemId ? "active" : ""}
+              >
+                {typesName[itemId]}
+              </li>
+            ))}
           </ul>
 
           <ul>
-            {sizes.map((size, id) => {
-              return (
-                <li
-                  key={id}
-                  onClick={() => setActiveSize(id)}
-                  className={activeSize === id ? "active" : ""}
-                >
-                  {size} см.
-                </li>
-              );
-            })}
+            {sizes.map((size, id) => (
+              <li
+                key={id}
+                onClick={() => setActiveSize(id)}
+                className={activeSize === id ? "active" : ""}
+              >
+                {size} см.
+              </li>
+            ))}
           </ul>
         </div>
         <div className="pizza-block__bottom">
@@ -72,7 +70,7 @@ const PizzaBlock = ({ id, title, imageUrl, types, sizes, price }) => {
               />
             </svg>
             <span>Добавить</span>
-            <i>1</i>
+            {/* <i>{}</i> */}
           </div>
         </div>
       </div>

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { setChangeSort } from "../redux/slices/filterSlice";
 
-const Sort = ({ value }) => {
+const Sort = () => {
   const dispatch = useDispatch();
   const sortList = [
     { name: "популярности", sortProperty: "rating" },

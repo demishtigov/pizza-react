@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setCategoryId, setChangeSort } from "../redux/slices/filterSlice";
 import { fetchPizzas } from "../redux/thunks/pizzaThunks";
@@ -9,6 +9,16 @@ import Sceleton from "../components/PizzaBlock/sceleton";
 
 const Home = () => {
   const dispatch = useDispatch();
+
+  // const {categoryId, sort, searchInput, pizzas, status, error } = useSelector((state) => ({
+  //   categoryId: state.filter.categoryId
+  //   sort: state.filter.sort,
+  //   searchInput: state.filter.searchInput,
+  //   pizzas: state.pizza.items,
+  //   status: state.pizza.status,
+  //   error: state.pizza.error
+  // }));
+
   const categoryId = useSelector((state) => state.filter.categoryId);
   const sort = useSelector((state) => state.filter.sort);
   const searchInput = useSelector((state) => state.filter.searchInput);
@@ -37,7 +47,7 @@ const Home = () => {
     <>
       <div className="content__top">
         <Categories value={categoryId} onChangeCategory={onChangeCategory} />
-        <Sort value={sort} onChangeSort={onChangeSort} />
+        <Sort onChangeSort={onChangeSort} />
       </div>
       <h2 className="content__title">Все пиццы</h2>
       <div className="content__items">
