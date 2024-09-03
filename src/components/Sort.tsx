@@ -2,9 +2,14 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { setChangeSort } from "../redux/slices/filterSlice";
 
-const Sort = () => {
+interface SortItem {
+  name: string;
+  sortProperty: string;
+}
+
+const Sort: React.FC = () => {
   const dispatch = useDispatch();
-  const sortList = [
+  const sortList: SortItem[] = [
     { name: "популярности", sortProperty: "rating" },
     { name: "цене", sortProperty: "price" },
     { name: "алфавиту", sortProperty: "name" },
@@ -14,7 +19,7 @@ const Sort = () => {
 
   const toggleSort = () => setOpen(!open);
 
-  const select = (i) => {
+  const select = (i: number) => {
     setSelectedSort(i);
     dispatch(setChangeSort(sortList[i]));
     setOpen(false);

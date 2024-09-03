@@ -1,7 +1,16 @@
 import React from "react";
 import ContentLoader from "react-content-loader";
 
-const Sceleton = (props) => (
+interface SceletonProps {
+  speed?: number;
+  width?: number;
+  height?: number;
+  viewBox?: string;
+  backgroundColor?: string;
+  foregroundColor?: string;
+}
+
+const Sceleton: React.FC<SceletonProps> = (props) => (
   <ContentLoader
     speed={2}
     width={280}

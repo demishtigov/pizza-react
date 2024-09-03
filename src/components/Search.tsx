@@ -1,23 +1,23 @@
+import React from "react";
 import { useDispatch } from "react-redux";
 import { setSearchInput } from "../redux/slices/filterSlice";
-
 import debounce from "lodash.debounce";
 
-const Search = () => {
+const Search: React.FC = () => {
   const dispatch = useDispatch();
 
-  const handleChangeInput = (event) => {
+  const handleChangeInput = (event: React.ChangeEvent<HTMLInputElement>) => {
     dispatch(setSearchInput(event.target.value));
   };
 
-  const debouncedHandleCnahgeInput = debounce(handleChangeInput, 500);
+  const debouncedHandleChangeInput = debounce(handleChangeInput, 500);
 
   return (
     <div className="search">
       <input
         type="text"
         placeholder="Поиск..."
-        onChange={debouncedHandleCnahgeInput}
+        onChange={debouncedHandleChangeInput}
       />
     </div>
   );
