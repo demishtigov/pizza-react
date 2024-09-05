@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 const categories = [
   "Все",
@@ -9,7 +9,12 @@ const categories = [
   "Закрытые",
 ];
 
-const Categories = ({ value, onChangeCategory }) => {
+interface CategoriesProps {
+  value: number;
+  onChangeCategory: (index: number) => void;
+}
+
+const Categories: React.FC<CategoriesProps> = ({ value, onChangeCategory }) => {
   return (
     <div className="categories">
       <ul>

@@ -11,7 +11,14 @@ interface PizzaBlockProps {
   price: number;
 }
 
-const PizzaBlock: React.FC<PizzaBlockProps> = ({ id, title, imageUrl, types, sizes, price }) => {
+const PizzaBlock: React.FC<PizzaBlockProps> = ({
+  id,
+  title,
+  imageUrl,
+  types,
+  sizes,
+  price,
+}) => {
   const dispatch = useDispatch();
   const typesName = ["Тонкое", "Традиционное"];
 
@@ -26,6 +33,7 @@ const PizzaBlock: React.FC<PizzaBlockProps> = ({ id, title, imageUrl, types, siz
       price,
       type: typesName[activeType],
       size: sizes[activeSize],
+      quantity: 1,
     };
     dispatch(addItem(item));
   };

@@ -6,31 +6,23 @@ import Categories from "../components/Categories";
 import Sort from "../components/Sort";
 import PizzaBlock from "../components/PizzaBlock";
 import Sceleton from "../components/PizzaBlock/sceleton";
+import { RootState, AppDispatch } from "../redux/store";
 
-const Home = () => {
-  const dispatch = useDispatch();
+const Home: React.FC = () => {
+  const dispatch: AppDispatch = useDispatch();
 
-  // const {categoryId, sort, searchInput, pizzas, status, error } = useSelector((state) => ({
-  //   categoryId: state.filter.categoryId
-  //   sort: state.filter.sort,
-  //   searchInput: state.filter.searchInput,
-  //   pizzas: state.pizza.items,
-  //   status: state.pizza.status,
-  //   error: state.pizza.error
-  // }));
+  const categoryId = useSelector((state: RootState) => state.filter.categoryId);
+  const sort = useSelector((state: RootState) => state.filter.sort);
+  const searchInput = useSelector((state: RootState) => state.filter.searchInput);
+  const pizzas = useSelector((state: RootState) => state.pizza.items);
+  const status = useSelector((state: RootState) => state.pizza.status);
+  const error = useSelector((state: RootState) => state.pizza.error);
 
-  const categoryId = useSelector((state) => state.filter.categoryId);
-  const sort = useSelector((state) => state.filter.sort);
-  const searchInput = useSelector((state) => state.filter.searchInput);
-  const pizzas = useSelector((state) => state.pizza.items);
-  const status = useSelector((state) => state.pizza.status);
-  const error = useSelector((state) => state.pizza.error);
-
-  const onChangeCategory = (id) => {
+  const onChangeCategory = (id: number) => {
     dispatch(setCategoryId(id));
   };
 
-  const onChangeSort = (sortItem) => {
+  const onChangeSort = (sortItem: { name: string; sortProperty: string }) => {
     dispatch(setChangeSort(sortItem));
   };
 

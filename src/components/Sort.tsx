@@ -7,7 +7,11 @@ interface SortItem {
   sortProperty: string;
 }
 
-const Sort: React.FC = () => {
+interface SortProps {
+  onChangeSort: (sortItem: SortItem) => void;
+}
+
+const Sort: React.FC<SortProps> = ({ onChangeSort }) => {
   const dispatch = useDispatch();
   const sortList: SortItem[] = [
     { name: "популярности", sortProperty: "rating" },
@@ -22,6 +26,7 @@ const Sort: React.FC = () => {
   const select = (i: number) => {
     setSelectedSort(i);
     dispatch(setChangeSort(sortList[i]));
+    onChangeSort(sortList[i]);
     setOpen(false);
   };
 

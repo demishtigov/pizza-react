@@ -2,9 +2,12 @@ import logo from "../assets/img/pizza-logo.svg";
 import { Link } from "react-router-dom";
 import Search from "./Search";
 import { useSelector } from "react-redux";
+import { RootState } from "../redux/store";
 
-const Header = () => {
-  const { items, totalPrice, totalCount } = useSelector((state) => state.cart);
+const Header: React.FC = () => {
+  const { totalPrice, totalCount } = useSelector(
+    (state: RootState) => state.cart
+  );
 
   return (
     <div className="header">
