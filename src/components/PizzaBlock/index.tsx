@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addItem } from "../../redux/slices/cartSlice";
+import { RootState } from "../../redux/store";
 
 interface PizzaBlockProps {
   id: number;
@@ -25,6 +26,12 @@ const PizzaBlock: React.FC<PizzaBlockProps> = ({
   const [activeType, setActiveType] = useState(0);
   const [activeSize, setActiveSize] = useState(0);
 
+  // Получаем количество элементов в корзине
+  const itemCount = useSelector((state: RootState) => {
+    const item = state.cart.items.find((item) => item.id === id);
+    return item ? item.quantity : 0;
+  });
+
   const addClick = () => {
     const item = {
       id,
@@ -33,7 +40,7 @@ const PizzaBlock: React.FC<PizzaBlockProps> = ({
       price,
       type: typesName[activeType],
       size: sizes[activeSize],
-      quantity: 1,
+      quantity: 1, // Добавляем свойство quantity
     };
     dispatch(addItem(item));
   };
@@ -87,6 +94,7 @@ const PizzaBlock: React.FC<PizzaBlockProps> = ({
               />
             </svg>
             <span>Добавить</span>
+            {itemCount > 0 && <i>{itemCount}</i>}
           </div>
         </div>
       </div>
