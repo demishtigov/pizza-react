@@ -2,7 +2,16 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addItem } from "../../redux/slices/cartSlice";
 
-const PizzaBlock = ({ id, title, imageUrl, types, sizes, price }) => {
+interface PizzaBlockProps {
+  id: number;
+  title: string;
+  imageUrl: string;
+  types: number[];
+  sizes: number[];
+  price: number;
+}
+
+const PizzaBlock: React.FC<PizzaBlockProps> = ({ id, title, imageUrl, types, sizes, price }) => {
   const dispatch = useDispatch();
   const typesName = ["Тонкое", "Традиционное"];
 
@@ -70,7 +79,6 @@ const PizzaBlock = ({ id, title, imageUrl, types, sizes, price }) => {
               />
             </svg>
             <span>Добавить</span>
-            {/* <i>{}</i> */}
           </div>
         </div>
       </div>
