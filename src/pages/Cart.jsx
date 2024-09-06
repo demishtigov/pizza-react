@@ -1,6 +1,11 @@
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { removeItem, clearCart, addItem } from "../redux/slices/cartSlice";
+import {
+  removeItem,
+  clearCart,
+  addItem,
+  removeItemCompletely,
+} from "../redux/slices/cartSlice";
 
 const Cart = () => {
   const dispatch = useDispatch();
@@ -8,6 +13,10 @@ const Cart = () => {
 
   const handleRemoveItem = (id) => {
     dispatch(removeItem(id));
+  };
+
+  const handleRemoveItemCompletely = (id) => {
+    dispatch(removeItemCompletely(id));
   };
 
   const handleAddItem = (item) => {
@@ -157,7 +166,7 @@ const Cart = () => {
             </div>
             <div
               className="cart__item-remove"
-              onClick={() => handleRemoveItem(item.id)}
+              onClick={() => handleRemoveItemCompletely(item.id)}
             >
               <div className="button button--outline button--circle">
                 <svg
